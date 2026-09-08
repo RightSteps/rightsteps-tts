@@ -1,5 +1,6 @@
 services:
   voice:
+    build: .
     image: rightstep-voice:latest
     container_name: rightstep-voice
     restart: unless-stopped
