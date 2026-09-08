@@ -1,0 +1,15 @@
+services:
+  voice:
+    image: rightstep-voice:latest
+    container_name: rightstep-voice
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
