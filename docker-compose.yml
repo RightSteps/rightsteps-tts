@@ -5,6 +5,13 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    environment:
+      PIPER_BINARY: /opt/piper/piper
+      PIPER_MODEL: /opt/piper/models/en_GB-cori-medium.onnx
+    volumes:
+      - /home/piper:/opt/piper
+      - /home/piper/en_GB-cori-medium.onnx:/opt/piper/models/en_GB-cori-medium.onnx
+      - /home/piper/en_GB-cori-medium.onnx.json:/opt/piper/models/en_GB-cori-medium.onnx.json
     ports:
       - "8080:8080"
     networks:
