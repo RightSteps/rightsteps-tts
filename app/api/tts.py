@@ -19,13 +19,12 @@ def make_wav_header() -> bytes:
     bits_per_sample = settings.bits_per_sample
     byte_rate = sample_rate * channels * bits_per_sample // 8
     block_align = channels * bits_per_sample // 8
-    data_size = 0xFFFFFFF0
     return struct.pack(
         '<4sI4s4sIHHIIHH4sI',
-        b'RIFF', data_size + 36, b'WAVE',
+        b'RIFF', 0xFFFFFFFF, b'WAVE',
         b'fmt ', 16, 1, channels,
         sample_rate, byte_rate, block_align,
-        bits_per_sample, b'data', data_size,
+        bits_per_sample, b'data', 0xFFFFFFFF,
     )
 
 
