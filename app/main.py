@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from .api.tts import router
 from .response import http_response
 
@@ -7,6 +8,13 @@ app = FastAPI(
     version='1.0.0',
     docs_url=None,
     redoc_url=None,
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_methods=['*'],
+    allow_headers=['*'],
 )
 
 app.include_router(router)
